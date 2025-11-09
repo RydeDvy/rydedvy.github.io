@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My GitHub Site</title>
+    <title>Ryde | GitHub Site</title>
     <style>
       :root {
-        --bg: #0d1117;
+        --bg-gradient: linear-gradient(160deg, #2b0a0a, #0a1a2b);
         --bg-alt: #161b22;
         --border: #30363d;
         --text: #c9d1d9;
@@ -19,13 +19,14 @@
       body {
         margin: 0;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: var(--bg);
+        background: var(--bg-gradient);
         color: var(--text);
         line-height: 1.5;
+        min-height: 100vh;
       }
       header {
         border-bottom: 1px solid var(--border);
-        background: rgba(13, 17, 23, 0.9);
+        background: rgba(13, 17, 23, 0.8);
         backdrop-filter: blur(8px);
         position: sticky;
         top: 0;
@@ -36,7 +37,7 @@
         margin: 0 auto;
         display: flex;
         align-items: center;
-        gap: 1rem;
+        justify-content: space-between;
         padding: 0.75rem 1rem;
       }
       .logo {
@@ -44,24 +45,9 @@
         font-size: 1.1rem;
         letter-spacing: -0.01em;
       }
-      .search {
-        flex: 1;
-      }
-      .search input {
-        width: 100%;
-        background: var(--bg-alt);
-        border: 1px solid transparent;
-        border-radius: 6px;
-        padding: 0.35rem 0.6rem;
-        color: inherit;
-      }
-      .search input:focus {
-        outline: none;
-        border-color: var(--accent);
-      }
       .nav-links {
         display: flex;
-        gap: 0.75rem;
+        gap: 1rem;
         font-size: 0.85rem;
       }
       .nav-links a {
@@ -70,43 +56,19 @@
       }
       .hero {
         max-width: 1100px;
-        margin: 1.25rem auto;
+        margin: 2rem auto;
         padding: 0 1rem;
         display: grid;
         grid-template-columns: 1.1fr 0.9fr;
         gap: 1.5rem;
       }
       .hero-left h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         margin-bottom: 0.25rem;
       }
       .hero-left p {
         color: var(--muted);
         margin-bottom: 1rem;
-      }
-      .hero-actions {
-        display: flex;
-        gap: 0.75rem;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem 0.9rem;
-        border-radius: 6px;
-        border: 1px solid transparent;
-        font-weight: 500;
-        cursor: pointer;
-        text-decoration: none;
-      }
-      .btn-primary {
-        background: var(--accent);
-        color: #fff;
-      }
-      .btn-secondary {
-        background: transparent;
-        border-color: var(--border);
-        color: inherit;
       }
       .hero-card {
         background: var(--bg-alt);
@@ -115,46 +77,10 @@
         padding: 1rem;
       }
       .hero-card h2 {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-top: 0;
       }
-      .repo-list {
-        max-width: 1100px;
-        margin: 1.5rem auto 3rem;
-        padding: 0 1rem;
-        display: grid;
-        gap: 0.75rem;
-      }
-      .section-title {
-        font-size: 0.95rem;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-      .repo {
-        background: var(--bg-alt);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 0.75rem 1rem;
-      }
-      .repo-top {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-      .repo-name {
-        font-weight: 600;
-      }
-      .repo-desc {
-        color: var(--muted);
-        font-size: 0.85rem;
-        margin-top: 0.35rem;
-      }
-      .repo-meta {
-        display: flex;
-        gap: 1rem;
-        font-size: 0.75rem;
-        margin-top: 0.5rem;
+      .hero-card p {
         color: var(--muted);
       }
       footer {
@@ -162,7 +88,7 @@
         padding: 1.5rem 1rem 2.5rem;
         text-align: center;
         color: var(--muted);
-        font-size: 0.75rem;
+        font-size: 0.8rem;
       }
       @media (max-width: 850px) {
         .hero {
@@ -178,75 +104,26 @@
     <header>
       <div class="topbar">
         <div class="logo">ryde-dev</div>
-        <div class="search">
-          <input type="text" placeholder="Search or jump to..." />
-        </div>
         <nav class="nav-links">
-          <a href="#">Overview</a>
-          <a href="#repos">Repositories</a>
-          <a href="#projects">Projects</a>
+          <a href="#">Home</a>
+          <a href="#about">About</a>
         </nav>
       </div>
     </header>
     <main>
       <section class="hero">
         <div class="hero-left">
-          <h1>Hey, I'm Ryde 👋</h1>
-          <p>Creative writer, digital artist, and messing around with GitHub Pages. This is the baseplate.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#repos">View Repos</a>
-            <a class="btn btn-secondary" href="#projects">Projects</a>
-          </div>
+          <h1>Hey, I'm Ryde</h1>
+          <p>Creative writer, digital artist, and Unexperienced HTML abuser. This page is intended for project display and experimental work. </p>
         </div>
-        <div class="hero-card">
+        <div class="hero-card" id="about">
           <h2>About this site</h2>
-          <p>This is a minimal GitHub-style layout you can edit. Swap text, add cards, or drop in your own components.</p>
-          <ul>
-            <li>Responsive header</li>
-            <li>Repo list section</li>
-            <li>Dark GitHub-ish theme</li>
-          </ul>
+          <p>Purely made for displaying written work and showcasing projects I'm working on.</p>
         </div>
-      </section>
-      <section class="repo-list" id="repos">
-        <div class="section-title">Pinned</div>
-        <article class="repo">
-          <div class="repo-top">
-            <div class="repo-name">earthborn-exile</div>
-            <div class="repo-visibility">Public</div>
-          </div>
-          <p class="repo-desc">Worldbuilding, notes, docs. Your main project.</p>
-          <div class="repo-meta">
-            <span>HTML</span>
-            <span>Updated just now</span>
-          </div>
-        </article>
-        <article class="repo">
-          <div class="repo-top">
-            <div class="repo-name">hex-concept-art</div>
-            <div class="repo-visibility">Public</div>
-          </div>
-          <p class="repo-desc">Sketches / assets for the Hex mutations.</p>
-          <div class="repo-meta">
-            <span>Markdown</span>
-            <span>Updated today</span>
-          </div>
-        </article>
-        <article class="repo">
-          <div class="repo-top">
-            <div class="repo-name">zxp-studio</div>
-            <div class="repo-visibility">Public</div>
-          </div>
-          <p class="repo-desc">Site + Discord assets.</p>
-          <div class="repo-meta">
-            <span>CSS</span>
-            <span>Updated this week</span>
-          </div>
-        </article>
       </section>
     </main>
     <footer>
-      © 2025 Ryde — Built on GitHub Pages baseplate.
+      © 2025 Ryde — Built on Zero Experience.
     </footer>
   </body>
 </html>
