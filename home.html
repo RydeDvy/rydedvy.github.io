@@ -7,7 +7,8 @@
     <style>
       :root {
         --bg-gradient: linear-gradient(160deg, #2b0a0a, #0a1a2b);
-        --bg-alt: #161b22;
+        --bg-alt: rgba(22, 27, 34, 0.4);
+        --card: rgba(13, 17, 23, 0.7);
         --border: #30363d;
         --text: #c9d1d9;
         --muted: #8b949e;
@@ -25,12 +26,15 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
       }
 
       main {
         flex: 1;
       }
 
+      /* HEADER */
       header {
         border-bottom: 1px solid var(--border);
         background: rgba(13, 17, 23, 0.8);
@@ -68,7 +72,7 @@
         border: 1px solid transparent;
         border-radius: 6px;
         overflow: hidden;
-        transition: border 0.25s ease, background 0.25s ease, transform 0.25s ease;
+        transition: border 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
       }
       .nav-links a::after {
         content: "";
@@ -92,34 +96,63 @@
         border: 1px solid rgba(255, 255, 255, 0.4);
         background: rgba(255, 255, 255, 0.05);
         transform: translateY(-1px);
+        box-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
       }
+
+      /* BACKGROUND STARS */
+      .bg-shapes {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .star {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.7);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+        animation: starfade 6s ease-in-out infinite;
+        will-change: opacity, transform;
+      }
+
+      /* HERO CARD */
       .hero {
+        position: relative;
         max-width: 1100px;
-        margin: 2rem auto;
+        margin: 3.5rem auto 2.5rem;
         padding: 0 1rem;
+        z-index: 2; /* above stars */
       }
-      .hero-left h1 {
-        font-size: 2.2rem;
-        margin-bottom: 0.25rem;
+      .hero-card {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        backdrop-filter: blur(6px);
+        border-radius: 14px;
+        padding: 1.6rem 1.4rem 1.3rem;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+        animation: fadeup 0.5s ease;
       }
-      .hero-left p {
+      .hero-title {
+        font-size: 2.1rem;
+        margin-bottom: 0.4rem;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.25), 0 0 20px rgba(255, 255, 255, 0.15);
+      }
+      .hero-text {
         color: var(--muted);
-        margin-bottom: 1rem;
+        max-width: 48rem;
       }
-      .about-section {
-        max-width: 1100px;
-        margin: 1.5rem auto 3rem;
-        padding: 0 1rem;
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+        margin: 1.2rem 0 1rem;
       }
-      .about-card {
-        background: var(--bg-alt);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 1rem;
+      .hero-footer {
+        color: rgba(201, 209, 217, 0.4);
+        font-size: 0.78rem;
       }
-      .about-card h2 {
-        margin-top: 0;
-      }
+
       footer {
         border-top: 1px solid var(--border);
         padding: 1.5rem 1rem 2.5rem;
@@ -127,7 +160,11 @@
         color: var(--muted);
         font-size: 0.8rem;
         margin-top: auto;
+        z-index: 2;
+        background: rgba(13, 17, 23, 0.15);
       }
+
+      /* ANIMATIONS */
       @keyframes glint {
         0% {
           top: -140%;
@@ -142,9 +179,40 @@
           left: 140%;
         }
       }
+      @keyframes fadeup {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes starfade {
+        0% {
+          opacity: 0;
+          transform: translateY(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(-6px);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(0);
+        }
+      }
+
       @media (max-width: 850px) {
         .nav-links {
           display: none;
+        }
+        .hero-card {
+          padding: 1.3rem 1rem 1rem;
+        }
+        .hero-title {
+          font-size: 1.8rem;
         }
       }
     </style>
@@ -159,16 +227,47 @@
         </nav>
       </div>
     </header>
+
+    <!-- floating background stars -->
+    <div class="bg-shapes" id="bg-shapes"></div>
+
     <main>
       <section class="hero">
-        <div class="hero-left">
-          <h1>Hey, I'm Ryde</h1>
-          <p>Creative writer, digital artist, and unexperienced HTML abuser. This page is intended for project display and experimental work.</p>
+        <div class="hero-card">
+          <h1 class="hero-title">Hey, I'm Ryde</h1>
+          <p class="hero-text">
+            Creative writer, digital artist, and unexperienced HTML abuser. This page is intended for project display and experimental work.
+          </p>
+          <div class="divider"></div>
+          <p class="hero-footer">This block will later hold navigation to projects, docs, art and maybe devlogs.</p>
         </div>
       </section>
     </main>
+
     <footer>
-      © 2025 Ryde — Built on Zero Experience.
+      © 2025 TotallyRealCopyright — Built on Zero Experience.
     </footer>
+
+    <script>
+      // generate random stars
+      const container = document.getElementById("bg-shapes");
+      const STAR_COUNT = 42; // adjust for more/less
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const star = document.createElement("span");
+        star.className = "star";
+        star.textContent = "✦";
+        const top = Math.random() * 100;
+        const left = Math.random() * 100;
+        const size = 0.45 + Math.random() * 0.45; // 0.45rem to ~0.9rem
+        const duration = 5 + Math.random() * 6; // 5s to 11s
+        const delay = Math.random() * 5 * -1; // negative delay so they're out of phase
+        star.style.top = top + "%";
+        star.style.left = left + "%";
+        star.style.fontSize = size + "rem";
+        star.style.animationDuration = duration + "s";
+        star.style.animationDelay = delay + "s";
+        container.appendChild(star);
+      }
+    </script>
   </body>
 </html>
